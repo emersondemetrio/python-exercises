@@ -10,18 +10,31 @@ a = int(RU[-(len(RU) - 1)])  # 8
 b = int(RU[-(len(RU) - 2)])  # 1
 c = int(RU[-(len(RU) - 3)])  # 7
 
-# def resolve_equation(a, b, c, x):
-#     # y = ax + bx – c
-#     return (a * x) + (b * x) - c
+
+def resolve_equation(a, b, c, x):
+    # y = ax + bx – c
+    return (a * x) + (b * x) - c
 
 
-# x1 = 5
-# x2 = 7
-# x3 = 9
+x1 = 5
+x2 = 7
+x3 = 9
 
 
-xs = [0, 2, -3, -1.5]
-ys = [0, 3, 1, -2.5]
+xs = [
+    0,
+    resolve_equation(a, b, c, x1),
+    resolve_equation(a, b, c, x2),
+    resolve_equation(a, b, c, x3)
+]
+
+ys = [
+    0,
+    resolve_equation(a, b, c, x1),
+    resolve_equation(a, b, c, x2),
+    resolve_equation(a, b, c, x3)
+]
+
 colors = ['m', 'g', 'r', 'b']
 
 # Select length of axes and the space between tick labels
@@ -70,5 +83,6 @@ ax.grid(which='both', color='grey', linewidth=1, linestyle='-', alpha=0.2)
 arrow_fmt = dict(markersize=4, color='black', clip_on=False)
 ax.plot((1), (0), marker='>', transform=ax.get_yaxis_transform(), **arrow_fmt)
 ax.plot((0), (1), marker='^', transform=ax.get_xaxis_transform(), **arrow_fmt)
+
 
 plt.show()
