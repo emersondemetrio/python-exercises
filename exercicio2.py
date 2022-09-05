@@ -1,74 +1,80 @@
-import matplotlib.pyplot as plt    # v 3.3.2
-import numpy as np                 # v 1.19.2
+from pylab import *
 import matplotlib.pyplot as plt
-import numpy as np
 
-# # https://matplotlib.org/stable/users/getting_started/index.html
+# Mesmo que ex. 01
 RU = "3710807".replace("0", "1")
 
 a = int(RU[-(len(RU) - 1)])  # 8
 b = int(RU[-(len(RU) - 2)])  # 1
 c = int(RU[-(len(RU) - 3)])  # 7
 
-# def resolve_equation(a, b, c, x):
-#     # y = ax + bx – c
-#     return (a * x) + (b * x) - c
+
+def resolve_equation(a, b, c, x):
+    return (a * x) + (b * x) - c
 
 
-# x1 = 5
-# x2 = 7
-# x3 = 9
+x1 = 5
+x2 = 7
+x3 = 9
+
+# cria todos os pontos (fixados) de x
+x_axis = [
+    None,
+    x1,
+    x2,
+    x3
+]
+
+# Cria todos os pontos de x resolvendo as equações
+y_axis = [
+    None,
+    resolve_equation(a, b, c, x1),
+    resolve_equation(a, b, c, x2),
+    resolve_equation(a, b, c, x3)
+]
 
 
-xs = [0, 2, -3, -1.5]
-ys = [0, 3, 1, -2.5]
-colors = ['m', 'g', 'r', 'b']
+# Transfora o titulo em 'Exercicio 02'
+result_figure = plt.figure('Exercicio 02')
 
-# Select length of axes and the space between tick labels
-xmin, xmax, ymin, ymax = -5, 5, -5, 5
-ticks_frequency = 1
+# Cria todos os subplots do gráfico
+ax = result_figure.add_subplot(111)
 
-# Plot points
-fig, ax = plt.subplots(figsize=(10, 10))
-ax.scatter(xs, ys, c=colors)
+# Cria o label 'X'
+ax.set_xlabel('X', size=14, labelpad=-24, x=1.03)
 
-# Draw lines connecting points to axes
-for x, y, c in zip(xs, ys, colors):
-    ax.plot([x, x], [0, y], c=c, ls='--', lw=1.5, alpha=0.5)
-    ax.plot([0, x], [y, y], c=c, ls='--', lw=1.5, alpha=0.5)
+# Cria o label 'X'
+ax.set_ylabel('Y', size=14, labelpad=5, rotation=0)
 
-# Set identical scales for both axes
-ax.set(xlim=(xmin-1, xmax+1), ylim=(ymin-1, ymax+1), aspect='equal')
 
-# Set bottom and left spines as x and y axes of coordinate system
-ax.spines['bottom'].set_position('zero')
-ax.spines['left'].set_position('zero')
+# Desenha todas as coordenadas de 'x'
+for dot_x, dot_y in zip(x_axis, y_axis):
+    plot(
+        [dot_x, dot_x],
+        [0, dot_y],
+        '-',
+        linewidth=3
+    )
 
-# Remove top and right spines
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
+# Desenha todas as coordenadas de 'y'
+for dot_x, dot_y in zip(x_axis, y_axis):
+    plot(
+        [0, dot_x],
+        [dot_y, dot_y],
+        '-',
+        linewidth=3
+    )
 
-# Create 'x' and 'y' labels placed at the end of the axes
-ax.set_xlabel('x', size=14, labelpad=-24, x=1.03)
-ax.set_ylabel('y', size=14, labelpad=-21, y=1.02, rotation=0)
+# Desenha os pontos onde as coordenadas se encontram (x, y)
+scatter(
+    x_axis,
+    y_axis,
+    s=100,
+    marker='o',
+)
 
-# Create custom major ticks to determine position of tick labels
-x_ticks = np.arange(xmin, xmax+1, ticks_frequency)
-y_ticks = np.arange(ymin, ymax+1, ticks_frequency)
-ax.set_xticks(x_ticks[x_ticks != 0])
-ax.set_yticks(y_ticks[y_ticks != 0])
+# Imprime uma grade
+grid()
 
-# Create minor ticks placed at each integer to enable drawing of minor grid
-# lines: note that this has no effect in this example with ticks_frequency=1
-ax.set_xticks(np.arange(xmin, xmax+1), minor=True)
-ax.set_yticks(np.arange(ymin, ymax+1), minor=True)
-
-# Draw major and minor grid lines
-ax.grid(which='both', color='grey', linewidth=1, linestyle='-', alpha=0.2)
-
-# Draw arrows
-arrow_fmt = dict(markersize=4, color='black', clip_on=False)
-ax.plot((1), (0), marker='>', transform=ax.get_yaxis_transform(), **arrow_fmt)
-ax.plot((0), (1), marker='^', transform=ax.get_xaxis_transform(), **arrow_fmt)
-
-plt.show()
+# Mostra a figura resultante
+show()

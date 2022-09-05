@@ -19,6 +19,12 @@
 
 ---
 
+# Importante
+
+Necessário executar
+
+pip install matplotlib
+
 -   2 Dada a equação linear y = ax + bx – c.
 
     Para os valores de a, b e c serão os
@@ -36,3 +42,8 @@
 
     Exemplo:
     Meu RU: 205 103 -> por ter zzero fica assim: a =1; b=3; c=3
+
+## Fontes de estudo
+
+[https://stackoverflow.com/questions/13430231/how-i-can-get-cartesian-coordinate-system-in-matplotlib](Como desenhar um plano cartesiano)
+[https://stackoverflow.com/questions/5812960/change-figure-window-title-in-pylab](Como alterar o título da figura)
