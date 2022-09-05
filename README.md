@@ -43,7 +43,16 @@ pip install matplotlib
     Exemplo:
     Meu RU: 205 103 -> por ter zzero fica assim: a =1; b=3; c=3
 
+## Resultado 01
+
+<img src="ex1.jpeg" width=400>
+
+## Resultado 02
+
+<img src="ex2.jpeg" width=400>
+
 ## Fontes de estudo
 
-[https://stackoverflow.com/questions/13430231/how-i-can-get-cartesian-coordinate-system-in-matplotlib](Como desenhar um plano cartesiano)
-[https://stackoverflow.com/questions/5812960/change-figure-window-title-in-pylab](Como alterar o título da figura)
+[Como desenhar um plano cartesiano](https://stackoverflow.com/questions/13430231/how-i-can-get-cartesian-coordinate-system-in-matplotlib)
+
+[Como alterar o título da figura](https://stackoverflow.com/questions/5812960/change-figure-window-title-in-pylab)
