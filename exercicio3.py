@@ -111,6 +111,3 @@ if(__name__ == "__main__"):
         max_of_store_sales,
         std_dev_of_store_sales
     )
-
-
-# https://pt.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/variance-standard-deviation-population/a/calculating-standard-deviation-step-by-step

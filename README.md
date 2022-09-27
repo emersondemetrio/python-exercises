@@ -76,8 +76,14 @@ Algumas informações extras sobre a tabela do arquivo STORES.csv:
 -   DailyCustomerCount: Número de clientes que visitaram as lojas em média ao longo do mês.
 -   Store_Sales: Vendas em (US$) que as lojas realizaram.
 
+## Restultados 3
+
+<img src="ex3.jpeg" width=400>
+
 ## Fontes de estudo
 
-[Como desenhar um plano cartesiano](https://stackoverflow.com/questions/13430231/how-i-can-get-cartesian-coordinate-system-in-matplotlib)
+-   [Desvio Padrão](https://pt.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/variance-standard-deviation-population/a/calculating-standard-deviation-step-by-step)
 
-[Como alterar o título da figura](https://stackoverflow.com/questions/5812960/change-figure-window-title-in-pylab)
+-   [Como desenhar um plano cartesiano](https://stackoverflow.com/questions/13430231/how-i-can-get-cartesian-coordinate-system-in-matplotlib)
+
+-   [Como alterar o título da figura](https://stackoverflow.com/questions/5812960/change-figure-window-title-in-pylab)
