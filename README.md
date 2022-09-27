@@ -51,6 +51,31 @@ pip install matplotlib
 
 <img src="ex2.jpeg" width=400>
 
+---
+
+## Exercício 3
+
+Realizar o upload do arquivo STORES.csv.
+
+Renomear todas as colunas do arquivo STORES.csv,
+onde os respctivos nomes sejam compactados
+
+(Exemplo: Daily_Customer_Count foi renomeado para Visitantes).
+
+Após isto, para se analisar o desempenho das lojas de supermercado/mercado do arquivo
+
+STORES.csv encontre os valores mínimo, máximo, médio e desvio padrão das seguinte colunas:
+
+"Items_Available"; "Daily_Customer_Count"; e "Store_Sales".
+
+Algumas informações extras sobre a tabela do arquivo STORES.csv:
+
+-   ID da loja: (Índice) ID da loja específica.
+-   Store ID: Área Física da loja em pátio.
+-   Store_Area: Número de itens diferentes disponíveis na loja correspondente.
+-   DailyCustomerCount: Número de clientes que visitaram as lojas em média ao longo do mês.
+-   Store_Sales: Vendas em (US$) que as lojas realizaram.
+
 ## Fontes de estudo
 
 [Como desenhar um plano cartesiano](https://stackoverflow.com/questions/13430231/how-i-can-get-cartesian-coordinate-system-in-matplotlib)
