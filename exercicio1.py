@@ -2,34 +2,34 @@
 import sys
 
 # Utils
-LINE_BREAKER = "\n"
+QUEBRA_LINHA = "\n"
 TAB = "\t"
 
 # Define uma mensagem de boas vindas
-WELCOME_MESSAGE = LINE_BREAKER + ">>> Emily Luz Calculator." + LINE_BREAKER
+BOAS_VINDAS_MSG = QUEBRA_LINHA + ">>> Emily Luz Calculator." + QUEBRA_LINHA
 
 # Define uma mensagem de fim de execução
-EXIT_MESSAGE = LINE_BREAKER + "Obrigado por utilizar a calculadora." + LINE_BREAKER
+SAIR_MSG = QUEBRA_LINHA + "Obrigado por utilizar a calculadora." + QUEBRA_LINHA
 
 # Define a mensagem de operação inválida
-INVALID_OPERATION_MESSAGE = LINE_BREAKER + "Operação inválida!" + LINE_BREAKER
+OPERACAO_INVALIDA_MSG = QUEBRA_LINHA + "Operação inválida!" + QUEBRA_LINHA
 
 # Substitui quaisquer 0's por 1's
-RU = "3710807".replace("0", "1")
+MEU_RU = "3710807".replace("0", "1")
 # RU = "54321" # RU para testes
 
 # Determina uma operação extra para encerrar o programa
-EXIT_OPERATION = "s"
+OPERACAO_SAIR = "s"
 
 # Determina quais são os operadores válidos para a calculadora.
-VALID_OPERATIONS = [
+OPERACOES_VALIDAS = [
     "+",
     "-",
     "*",
     "/",
     "^",
     "%",
-    EXIT_OPERATION
+    OPERACAO_SAIR
 ]
 
 # Define a mensagem de menu
@@ -49,75 +49,76 @@ class Calculadora:
     # Inicializa a classe
     def __init__(self, ru):
         self.ru = ru
-        self.operation = None
+        self.operacao = None
 
     # Cria a operação +
-    def add(self, num1, num2):
+    def adicionar(self, num1, num2):
         return num1 + num2
 
     # Cria a operação -
-    def sub(self, num1, num2):
+    def subtrair(self, num1, num2):
         return num1 - num2
 
     # Cria a operação *
-    def mul(self, num1, num2):
+    def multiplicar(self, num1, num2):
         return num1 * num2
 
     # Cria a operação /
-    def div(self, num1, num2):
+    def dividir(self, num1, num2):
         return num1 / num2
 
     # Cria a operação +
-    def exp(self, num1, num2):
+    def exponencial(self, num1, num2):
         return pow(num1, num2)
 
     # Cria a operação %
-    def mod(self, num1, num2):
+    def modulo(self, num1, num2):
         return num1 % num2
 
-    def get_operation(self):
+    def pegar_operacao(self):
         # Le e valida a operação informada pelo usuário
-        operation = input(MENU)
-        while(operation not in VALID_OPERATIONS):
-            print(INVALID_OPERATION_MESSAGE)
-            operation = input(MENU)
+        operacao = input(MENU)
+
+        while(operacao not in OPERACOES_VALIDAS):
+            print(OPERACAO_INVALIDA_MSG)
+            operacao = input(MENU)
 
         # Encerra a execuçao com o comando 's'
-        if(operation == EXIT_OPERATION):
-            print(EXIT_MESSAGE)
+        if(operacao == OPERACAO_SAIR):
+            print(SAIR_MSG)
             sys.exit(0)
 
-        return operation
+        return operacao
 
-    def get_number_operand(self, n):
-        input_message = "Digite o " + n + " número: "
+    def pegar_operando(self, valor_esperado_n):
+        msg_entrada_dados = "Digite o " + valor_esperado_n + " número: "
 
         # Le o input 'n' (1 ou 2) do usuário
-        n_input = input(input_message)
+        valor_entrada_usuario = input(msg_entrada_dados)
 
         # Valida o input 'n' do usuário
-        while(not n_input.isdigit()):
-            if(not n_input.isdigit()):
-                print(LINE_BREAKER + n + "o número invalido")
-                n_input = input(input_message)
+        while(not valor_entrada_usuario.isdigit()):
+            if(not valor_entrada_usuario.isdigit()):
+                print(QUEBRA_LINHA + valor_esperado_n + "o número invalido")
+                valor_entrada_usuario = input(msg_entrada_dados)
 
-        n_input = n_input.replace("0", "1")
+        valor_entrada_usuario = valor_entrada_usuario.replace("0", "1")
 
         # Retorna como inteiro (conforme enunciado)
         # o input 'n' do usuário
-        return int(n_input)
+        return int(valor_entrada_usuario)
 
-    def show_menu(self):
-        operation = self.get_operation()
-        self.operation = operation
+    def mostrar_menu(self):
+        operacao = self.pegar_operacao()
+        self.operacao = operacao
 
         # O enunciado diz "Possibilite ao usuário digiar os 2 numeros,
         # todavia, também diz que "os 2 numeros serão os 2 ultimos numeros do RU??"
 
         # Para ler 2 numeros do usuario:
 
-        num1 = self.get_number_operand("1")
-        num2 = self.get_number_operand("2")
+        num1 = self.pegar_operando("1")
+        num2 = self.pegar_operando("2")
 
         # Para apenas usar os numeros do RU como operandos:
 
@@ -128,32 +129,32 @@ class Calculadora:
 
         # Transforma o input do usuário no resultado das operações
 
-        if(operation == "+"):
-            result = self.add(num1, num2)
+        if(operacao == "+"):
+            result = self.adicionar(num1, num2)
 
-        if(operation == "-"):
-            result = self.sub(num1, num2)
+        if(operacao == "-"):
+            result = self.subtrair(num1, num2)
 
-        if(operation == "*"):
-            result = self.mul(num1, num2)
+        if(operacao == "*"):
+            result = self.multiplicar(num1, num2)
 
-        if(operation == "/"):
-            result = self.div(num1, num2)
+        if(operacao == "/"):
+            result = self.dividir(num1, num2)
 
-        if(operation == "^"):
-            result = self.exp(num1, num2)
+        if(operacao == "^"):
+            result = self.exponencial(num1, num2)
 
-        if(operation == '%'):
-            result = self.mod(num1, num2)
+        if(operacao == '%'):
+            result = self.modulo(num1, num2)
 
-        print(LINE_BREAKER + "Operação: " + TAB + str(num1) +
-              " " + operation + " " + str(num2))
-        print("Resultado: " + TAB + str(result) + LINE_BREAKER)
+        print(QUEBRA_LINHA + "Operação: " + TAB + str(num1) +
+              " " + operacao + " " + str(num2))
+        print("Resultado: " + TAB + str(result) + QUEBRA_LINHA)
 
 
 if(__name__ == "__main__"):
-    print(WELCOME_MESSAGE)
-    m1 = Calculadora(RU)
+    print(BOAS_VINDAS_MSG)
+    m1 = Calculadora(MEU_RU)
 
-    while(m1.operation != EXIT_OPERATION):
-        m1.show_menu()
+    while(m1.operacao != OPERACAO_SAIR):
+        m1.mostrar_menu()

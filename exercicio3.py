@@ -1,115 +1,129 @@
 import csv
 from math import sqrt
 
-CSV_FILE_PATH = './Stores_edited.csv'
+CAMINHO_ARQUIVO_CSV = './Stores_edited.csv'
 
 
-def min_of(items):
+def arredondar_duas_casas(numero):
+    return round(numero, 2)
+
+
+def pegar_menor_valor_lista(lista_de_itens):
     # Retorna o menor valor da lista
-    return min(items)
+    return arredondar_duas_casas(min(lista_de_itens))
 
 
-def max_of(items):
+def pegar_maior_valor_lista(lista_de_itens):
     # Retorna o maior valor da lista
-    return max(items)
+    return arredondar_duas_casas(max(lista_de_itens))
 
 
-def average_of(items):
+def pegar_valor_medio_lista(lista_de_itens):
     # Retorna o valor médio da lista
-    average = float(sum(items) / len(items))
-    return round(average, 2)
+    media = float(sum(lista_de_itens) / len(lista_de_itens))
+
+    return arredondar_duas_casas(media)
 
 
-def get_std_deviation_of(items):
+def pegr_quadrado_numero(num):
+    return pow(num, 2)
+
+
+def pegar_desvio_padrao_lista(items):
     # Retorna o valor do desvio padrao da lista
-    len_of = len(items)
-    average = average_of(items)
+    tamanho = len(items)
+    media = pegar_valor_medio_lista(items)
 
-    dist_avg = 0
+    soma = 0
     for item in items:
-        dist_avg += pow((item - average), 2)
+        soma += pegr_quadrado_numero(item - media)
 
-    std_dev = sqrt(dist_avg / (len_of - 1))
+    desvio_padrao = sqrt(soma / (tamanho - 1))
 
-    return round(std_dev, 2)
+    return arredondar_duas_casas(desvio_padrao)
 
 
-def split_csv_file():
+def ler_arquivo_csv():
     # le e processa os dados do arquivo
-    with open(CSV_FILE_PATH, newline='') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
+    with open(CAMINHO_ARQUIVO_CSV, newline='') as arquivo_csv:
+        leitor_csv = csv.reader(arquivo_csv, delimiter=',')
 
-        items = []
+        lista = []
 
-        for index, row in enumerate(csv_reader):
-            if index > 0:
-                items.append(row)
+        for indice, linha in enumerate(leitor_csv):
+            if indice > 0:
+                lista.append(linha)
 
-        return items
+        return lista
 
 
-def show_formatted_data(name, media, menor_valor_da_lista, maior_valor_da_lista, desvio_padrao):
+def mostrar_valores_formatados(
+        nome_lista,
+        media,
+        menor_valor_da_lista,
+        maior_valor_da_lista,
+        desvio_padrao):
     # Imprime as mensages com os valores formatados
-    print(f"- O valor médio de {name} é: {media}")
-    print(f"- O valor mínimo de {name} é: {menor_valor_da_lista}")
-    print(f"- O valor máximo de {name} é: {maior_valor_da_lista}")
-    print(f"- O desvio padrão de {name} é: {desvio_padrao}\n")
+    print(f"- O valor médio de '{nome_lista}' é: {media}")
+    print(f"- O valor mínimo de '{nome_lista}' é: {menor_valor_da_lista}")
+    print(f"- O valor máximo de '{nome_lista}' é: {maior_valor_da_lista}")
+    print(f"- O desvio padrão de '{nome_lista}' é: {desvio_padrao}\n")
 
 
 if(__name__ == "__main__"):
     print("\n## Desempenho das lojas\n")
 
     # Lista os elementos do arquivo .csv
-    items = split_csv_file()
+    lista = ler_arquivo_csv()
 
     # Separa os items em 3 listas
-    available_items = []
-    daily_visits = []
-    store_sales = []
+    lista_itens_disponiveis = []
+    lista_visitas_diarias = []
+    lista_vendas = []
 
     # popula os items nas respectivas listas
-    for line in items:
-        available_items.append(float(line[2]))
-        daily_visits.append(float(line[3]))
-        store_sales.append(float(line[4]))
+    for linha in lista:
+        lista_itens_disponiveis.append(float(linha[2]))
+        lista_visitas_diarias.append(float(linha[3]))
+        lista_vendas.append(float(linha[4]))
 
     # Para cada lista, calcula os valores de média, máx, min e desvio padrao
-    average_av_items = average_of(available_items)
-    min_of_av_items = min_of(available_items)
-    max_of_av_items = max_of(daily_visits)
-    std_dev_of_av_items = get_std_deviation_of(daily_visits)
+    valor_medio_itens = pegar_valor_medio_lista(lista_itens_disponiveis)
+    valor_min_itens = pegar_menor_valor_lista(lista_itens_disponiveis)
+    valor_max_itens = pegar_maior_valor_lista(lista_visitas_diarias)
+    desv_pad_itens = pegar_desvio_padrao_lista(lista_visitas_diarias)
 
     # Mostra os dados formatados
-    show_formatted_data(
+    mostrar_valores_formatados(
         "Produtos",
-        average_av_items,
-        min_of_av_items,
-        max_of_av_items,
-        std_dev_of_av_items
+        valor_medio_itens,
+        valor_min_itens,
+        valor_max_itens,
+        desv_pad_itens
     )
 
-    average_daily_visits = average_of(daily_visits)
-    min_of_daily_visits = min_of(daily_visits)
-    max_of_daily_visits = max_of(daily_visits)
-    std_dev_of_daily_visits = get_std_deviation_of(daily_visits)
+    valor_medio_visitas = pegar_valor_medio_lista(lista_visitas_diarias)
+    valor_min_visitas = pegar_menor_valor_lista(lista_visitas_diarias)
+    valor_max_visitas = pegar_maior_valor_lista(lista_visitas_diarias)
+    desv_pad_visitas = pegar_desvio_padrao_lista(lista_visitas_diarias)
 
-    show_formatted_data(
+    mostrar_valores_formatados(
         "Visitas",
-        average_daily_visits,
-        min_of_daily_visits,
-        max_of_daily_visits,
-        std_dev_of_daily_visits
+        valor_medio_visitas,
+        valor_min_visitas,
+        valor_max_visitas,
+        desv_pad_visitas
     )
 
-    average_store_sales = average_of(store_sales)
-    min_of_store_sales = min_of(store_sales)
-    max_of_store_sales = max_of(store_sales)
-    std_dev_of_store_sales = get_std_deviation_of(store_sales)
+    valor_medio_vendas = pegar_valor_medio_lista(lista_vendas)
+    valor_min_vendas = pegar_menor_valor_lista(lista_vendas)
+    valor_max_vendas = pegar_maior_valor_lista(lista_vendas)
+    desv_pad_vendas = pegar_desvio_padrao_lista(lista_vendas)
 
-    show_formatted_data(
+    mostrar_valores_formatados(
         "Vendas",
-        average_store_sales,
-        min_of_store_sales,
-        max_of_store_sales,
-        std_dev_of_store_sales
+        valor_medio_vendas,
+        valor_max_vendas,
+        valor_min_vendas,
+        desv_pad_vendas
     )

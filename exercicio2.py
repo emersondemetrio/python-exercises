@@ -9,7 +9,7 @@ b = int(RU[-(len(RU) - 2)])  # 1
 c = int(RU[-(len(RU) - 3)])  # 7
 
 
-def resolve_equation(a, b, c, x):
+def resolver_equacao(a, b, c, x):
     return (a * x) + (b * x) - c
 
 
@@ -18,7 +18,7 @@ x2 = 7
 x3 = 9
 
 # cria todos os pontos (fixados) de x
-x_axis = [
+eixo_x = [
     None,
     x1,
     x2,
@@ -26,11 +26,11 @@ x_axis = [
 ]
 
 # Cria todos os pontos de x resolvendo as equações
-y_axis = [
+eixo_y = [
     None,
-    resolve_equation(a, b, c, x1),
-    resolve_equation(a, b, c, x2),
-    resolve_equation(a, b, c, x3)
+    resolver_equacao(a, b, c, x1),
+    resolver_equacao(a, b, c, x2),
+    resolver_equacao(a, b, c, x3)
 ]
 
 
@@ -48,27 +48,27 @@ ax.set_ylabel('Y', size=14, labelpad=5, rotation=0)
 
 
 # Desenha todas as coordenadas de 'x'
-for dot_x, dot_y in zip(x_axis, y_axis):
+for ponto_x, ponto_y in zip(eixo_x, eixo_y):
     plot(
-        [dot_x, dot_x],
-        [0, dot_y],
+        [ponto_x, ponto_x],
+        [0, ponto_y],
         '-',
         linewidth=3
     )
 
 # Desenha todas as coordenadas de 'y'
-for dot_x, dot_y in zip(x_axis, y_axis):
+for ponto_x, ponto_y in zip(eixo_x, eixo_y):
     plot(
-        [0, dot_x],
-        [dot_y, dot_y],
+        [0, ponto_x],
+        [ponto_y, ponto_y],
         '-',
         linewidth=3
     )
 
 # Desenha os pontos onde as coordenadas se encontram (x, y)
 scatter(
-    x_axis,
-    y_axis,
+    eixo_x,
+    eixo_y,
     s=100,
     marker='o',
 )
