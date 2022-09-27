@@ -18,7 +18,8 @@ def max_of(items):
 
 
 def average_of(items):
-    return float(sum(items) / len(items))
+    average = float(sum(items) / len(items))
+    return round(average, 2)
 
 
 def get_std_deviation_built_in_lib(items):
@@ -37,7 +38,7 @@ def get_std_deviation_of(items):
 
     std_dev = sqrt(dist_avg / (len_of - 1))
 
-    return std_dev
+    return round(std_dev, 2)
 
 
 def split_csv_file():
